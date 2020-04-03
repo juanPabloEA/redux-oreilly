@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: "./todo-app.js",
+    entry: "./async/demo.js",
     output: {
       filename: "bundle.js"
     },

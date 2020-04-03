@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./todo-app.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./async/demo.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -98,63 +98,47 @@ eval("// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission 
 
 /***/ }),
 
-/***/ "./actions.js":
-/*!********************!*\
-  !*** ./actions.js ***!
-  \********************/
-/*! exports provided: createItem */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./async/book-actions.js":
+/*!*******************************!*\
+  !*** ./async/book-actions.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createItem\", function() { return createItem; });\nfunction createItem(title) {\n    return { type: \"CREATE_ITEM\", payload: { title: title } };\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hY3Rpb25zLmpzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYWN0aW9ucy5qcz9jM2NmIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBmdW5jdGlvbiBjcmVhdGVJdGVtKHRpdGxlKSB7XG4gICAgcmV0dXJuIHsgdHlwZTogXCJDUkVBVEVfSVRFTVwiLCBwYXlsb2FkOiB7IHRpdGxlOiB0aXRsZSB9IH07XG59Il0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./actions.js\n");
+eval("// async/book-actions.js\n\nconst fetchBookLoading = () => ({ type: 'FETCH_BOOK_LOADING' });\nconst fetchBookSuccess = (data) => ({ type: 'FETCH_BOOK_SUCCESS', payload: data });\nconst fetchBookError = (error) => ({ type: 'FETCH_BOOK_ERROR', payload: error });\n\nmodule.exports = {\n  fetchBookLoading,\n  fetchBookSuccess,\n  fetchBookError\n};//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hc3luYy9ib29rLWFjdGlvbnMuanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3luYy9ib29rLWFjdGlvbnMuanM/OTA5MSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBhc3luYy9ib29rLWFjdGlvbnMuanNcblxuY29uc3QgZmV0Y2hCb29rTG9hZGluZyA9ICgpID0+ICh7IHR5cGU6ICdGRVRDSF9CT09LX0xPQURJTkcnIH0pO1xuY29uc3QgZmV0Y2hCb29rU3VjY2VzcyA9IChkYXRhKSA9PiAoeyB0eXBlOiAnRkVUQ0hfQk9PS19TVUNDRVNTJywgcGF5bG9hZDogZGF0YSB9KTtcbmNvbnN0IGZldGNoQm9va0Vycm9yID0gKGVycm9yKSA9PiAoeyB0eXBlOiAnRkVUQ0hfQk9PS19FUlJPUicsIHBheWxvYWQ6IGVycm9yIH0pO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgZmV0Y2hCb29rTG9hZGluZyxcbiAgZmV0Y2hCb29rU3VjY2VzcyxcbiAgZmV0Y2hCb29rRXJyb3Jcbn07Il0sIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./async/book-actions.js\n");
 
 /***/ }),
 
-/***/ "./create-view.js":
+/***/ "./async/book-reducer.js":
+/*!*******************************!*\
+  !*** ./async/book-reducer.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("let initialState = {\n    loading: false,\n    data: void 0,\n    error: void 0\n  };\n  \n  const bookReducer = (state = initialState, action) => {\n    switch(action.type) {\n      case 'FETCH_BOOK_LOADING':\n        return {...state, loading: true };\n      case 'FETCH_BOOK_SUCCESS':\n        return {...state, data: Object.assign({}, action.payload), loading: false};\n      case 'FETCH_BOOK_ERROR': \n        return {...state, error: { ...action.payload }, loading: false }; \n    }\n  }\n  \n  module.exports = bookReducer;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hc3luYy9ib29rLXJlZHVjZXIuanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3luYy9ib29rLXJlZHVjZXIuanM/NWFlYiJdLCJzb3VyY2VzQ29udGVudCI6WyJsZXQgaW5pdGlhbFN0YXRlID0ge1xuICAgIGxvYWRpbmc6IGZhbHNlLFxuICAgIGRhdGE6IHZvaWQgMCxcbiAgICBlcnJvcjogdm9pZCAwXG4gIH07XG4gIFxuICBjb25zdCBib29rUmVkdWNlciA9IChzdGF0ZSA9IGluaXRpYWxTdGF0ZSwgYWN0aW9uKSA9PiB7XG4gICAgc3dpdGNoKGFjdGlvbi50eXBlKSB7XG4gICAgICBjYXNlICdGRVRDSF9CT09LX0xPQURJTkcnOlxuICAgICAgICByZXR1cm4gey4uLnN0YXRlLCBsb2FkaW5nOiB0cnVlIH07XG4gICAgICBjYXNlICdGRVRDSF9CT09LX1NVQ0NFU1MnOlxuICAgICAgICByZXR1cm4gey4uLnN0YXRlLCBkYXRhOiBPYmplY3QuYXNzaWduKHt9LCBhY3Rpb24ucGF5bG9hZCksIGxvYWRpbmc6IGZhbHNlfTtcbiAgICAgIGNhc2UgJ0ZFVENIX0JPT0tfRVJST1InOiBcbiAgICAgICAgcmV0dXJuIHsuLi5zdGF0ZSwgZXJyb3I6IHsgLi4uYWN0aW9uLnBheWxvYWQgfSwgbG9hZGluZzogZmFsc2UgfTsgXG4gICAgfVxuICB9XG4gIFxuICBtb2R1bGUuZXhwb3J0cyA9IGJvb2tSZWR1Y2VyOyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./async/book-reducer.js\n");
+
+/***/ }),
+
+/***/ "./async/demo.js":
+/*!***********************!*\
+  !*** ./async/demo.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// async/demo.js\n\nconst { fetchBookLoading, fetchBookSuccess, fetchBookError } = __webpack_require__(/*! ./book-actions */ \"./async/book-actions.js\");\nconst { dispatch, getState, subscribe } = __webpack_require__(/*! ./redux */ \"./async/redux.js\");\n\nfunction fetchBook() {\n  return new Promise(resolve => {\n    setTimeout(() => {\n      resolve({ title: 'A new hope - the book' });\n    }, 5000);\n  })\n}\nsubscribe(loadButton);\nconsole.log('getState() 1st', getState());\ndispatch(fetchBookLoading());\nconsole.log('getState() 2nd', getState()); \n\nasync function main() {\n  try {\n    const book = await fetchBook();\n    dispatch(fetchBookSuccess(book));\n    console.log('getState() 3nd', getState());\n  } catch(err) {\n    dispatch(fetchBookError(err));\n    console.log('getState() 4nd',getState());\n  }\n}\nfunction loadButton(){\n    const state = getState();\n    const sendbtn = document.getElementById('saveButton');\n    if (state.loading) {\n        sendbtn.setAttribute('disabled', true);\n    } else {\n        sendbtn.removeAttribute('disabled');\n    }\n}\n\nmain();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hc3luYy9kZW1vLmpzLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXN5bmMvZGVtby5qcz8xNjEzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGFzeW5jL2RlbW8uanNcblxuY29uc3QgeyBmZXRjaEJvb2tMb2FkaW5nLCBmZXRjaEJvb2tTdWNjZXNzLCBmZXRjaEJvb2tFcnJvciB9ID0gcmVxdWlyZSgnLi9ib29rLWFjdGlvbnMnKTtcbmNvbnN0IHsgZGlzcGF0Y2gsIGdldFN0YXRlLCBzdWJzY3JpYmUgfSA9IHJlcXVpcmUoJy4vcmVkdXgnKTtcblxuZnVuY3Rpb24gZmV0Y2hCb29rKCkge1xuICByZXR1cm4gbmV3IFByb21pc2UocmVzb2x2ZSA9PiB7XG4gICAgc2V0VGltZW91dCgoKSA9PiB7XG4gICAgICByZXNvbHZlKHsgdGl0bGU6ICdBIG5ldyBob3BlIC0gdGhlIGJvb2snIH0pO1xuICAgIH0sIDUwMDApO1xuICB9KVxufVxuc3Vic2NyaWJlKGxvYWRCdXR0b24pO1xuY29uc29sZS5sb2coJ2dldFN0YXRlKCkgMXN0JywgZ2V0U3RhdGUoKSk7XG5kaXNwYXRjaChmZXRjaEJvb2tMb2FkaW5nKCkpO1xuY29uc29sZS5sb2coJ2dldFN0YXRlKCkgMm5kJywgZ2V0U3RhdGUoKSk7IFxuXG5hc3luYyBmdW5jdGlvbiBtYWluKCkge1xuICB0cnkge1xuICAgIGNvbnN0IGJvb2sgPSBhd2FpdCBmZXRjaEJvb2soKTtcbiAgICBkaXNwYXRjaChmZXRjaEJvb2tTdWNjZXNzKGJvb2spKTtcbiAgICBjb25zb2xlLmxvZygnZ2V0U3RhdGUoKSAzbmQnLCBnZXRTdGF0ZSgpKTtcbiAgfSBjYXRjaChlcnIpIHtcbiAgICBkaXNwYXRjaChmZXRjaEJvb2tFcnJvcihlcnIpKTtcbiAgICBjb25zb2xlLmxvZygnZ2V0U3RhdGUoKSA0bmQnLGdldFN0YXRlKCkpO1xuICB9XG59XG5mdW5jdGlvbiBsb2FkQnV0dG9uKCl7XG4gICAgY29uc3Qgc3RhdGUgPSBnZXRTdGF0ZSgpO1xuICAgIGNvbnN0IHNlbmRidG4gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2F2ZUJ1dHRvbicpO1xuICAgIGlmIChzdGF0ZS5sb2FkaW5nKSB7XG4gICAgICAgIHNlbmRidG4uc2V0QXR0cmlidXRlKCdkaXNhYmxlZCcsIHRydWUpO1xuICAgIH0gZWxzZSB7XG4gICAgICAgIHNlbmRidG4ucmVtb3ZlQXR0cmlidXRlKCdkaXNhYmxlZCcpO1xuICAgIH1cbn1cblxubWFpbigpOyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./async/demo.js\n");
+
+/***/ }),
+
+/***/ "./async/redux.js":
 /*!************************!*\
-  !*** ./create-view.js ***!
+  !*** ./async/redux.js ***!
   \************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions.js */ \"./actions.js\");\n/* harmony import */ var _redux_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./redux.js */ \"./redux.js\");\n\n\n\nconsole.log('create item view has loaded');\n\nclass CreateItemView {\n    saveItem() {\n        const elem = document.getElementById('input');\n        Object(_redux_js__WEBPACK_IMPORTED_MODULE_1__[\"dispach\"])(Object(_actions_js__WEBPACK_IMPORTED_MODULE_0__[\"createItem\"])(elem.value));\n        const items = Object(_redux_js__WEBPACK_IMPORTED_MODULE_1__[\"getState\"])('items');\n        console.log(items);\n    }\n}\n\nconst button = document.getElementById('saveButton');\nconst createItemView = new CreateItemView();\n\nbutton.addEventListener('click', createItemView.saveItem);\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (createItemView);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jcmVhdGUtdmlldy5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2NyZWF0ZS12aWV3LmpzPzA4MGMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlSXRlbSB9IGZyb20gJy4vYWN0aW9ucy5qcyc7XG5pbXBvcnQgeyBkaXNwYWNoLCBnZXRTdGF0ZSB9IGZyb20gJy4vcmVkdXguanMnO1xuXG5jb25zb2xlLmxvZygnY3JlYXRlIGl0ZW0gdmlldyBoYXMgbG9hZGVkJyk7XG5cbmNsYXNzIENyZWF0ZUl0ZW1WaWV3IHtcbiAgICBzYXZlSXRlbSgpIHtcbiAgICAgICAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdpbnB1dCcpO1xuICAgICAgICBkaXNwYWNoKGNyZWF0ZUl0ZW0oZWxlbS52YWx1ZSkpO1xuICAgICAgICBjb25zdCBpdGVtcyA9IGdldFN0YXRlKCdpdGVtcycpO1xuICAgICAgICBjb25zb2xlLmxvZyhpdGVtcyk7XG4gICAgfVxufVxuXG5jb25zdCBidXR0b24gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2F2ZUJ1dHRvbicpO1xuY29uc3QgY3JlYXRlSXRlbVZpZXcgPSBuZXcgQ3JlYXRlSXRlbVZpZXcoKTtcblxuYnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgY3JlYXRlSXRlbVZpZXcuc2F2ZUl0ZW0pO1xuXG5leHBvcnQgZGVmYXVsdCBjcmVhdGVJdGVtVmlldzsiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./create-view.js\n");
-
-/***/ }),
-
-/***/ "./list-view.js":
-/*!**********************!*\
-  !*** ./list-view.js ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions.js */ \"./actions.js\");\n/* harmony import */ var _redux_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./redux.js */ \"./redux.js\");\n// dataflow/list-view.js\n\n\n\n\nconsole.log(\"list item view has loaded\");\n\nclass ListItemsView {\n  constructor() {\n    this.render();\n    Object(_redux_js__WEBPACK_IMPORTED_MODULE_1__[\"subscribe\"])(this.render);\n  }\n\n  render() {\n    const items = Object(_redux_js__WEBPACK_IMPORTED_MODULE_1__[\"select\"])(\"items\");\n    const elem = document.getElementById(\"list\");\n    elem.innerHTML = \"\";\n    console.log(\"items\", items);\n    \n    items.forEach(item => {\n      const li = document.createElement(\"li\");\n      li.innerHTML = item.title;\n      elem.appendChild(li);\n    });\n  }\n}\n\nconst listItemsView = new ListItemsView();\n/* harmony default export */ __webpack_exports__[\"default\"] = (listItemsView);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9saXN0LXZpZXcuanMuanMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9saXN0LXZpZXcuanM/NzZiMiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBkYXRhZmxvdy9saXN0LXZpZXcuanNcblxuaW1wb3J0IHsgY3JlYXRlSXRlbSB9IGZyb20gXCIuL2FjdGlvbnMuanNcIjtcbmltcG9ydCB7IHNlbGVjdCwgc3Vic2NyaWJlIH0gZnJvbSBcIi4vcmVkdXguanNcIjtcblxuY29uc29sZS5sb2coXCJsaXN0IGl0ZW0gdmlldyBoYXMgbG9hZGVkXCIpO1xuXG5jbGFzcyBMaXN0SXRlbXNWaWV3IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgdGhpcy5yZW5kZXIoKTtcbiAgICBzdWJzY3JpYmUodGhpcy5yZW5kZXIpO1xuICB9XG5cbiAgcmVuZGVyKCkge1xuICAgIGNvbnN0IGl0ZW1zID0gc2VsZWN0KFwiaXRlbXNcIik7XG4gICAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwibGlzdFwiKTtcbiAgICBlbGVtLmlubmVySFRNTCA9IFwiXCI7XG4gICAgY29uc29sZS5sb2coXCJpdGVtc1wiLCBpdGVtcyk7XG4gICAgXG4gICAgaXRlbXMuZm9yRWFjaChpdGVtID0+IHtcbiAgICAgIGNvbnN0IGxpID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImxpXCIpO1xuICAgICAgbGkuaW5uZXJIVE1MID0gaXRlbS50aXRsZTtcbiAgICAgIGVsZW0uYXBwZW5kQ2hpbGQobGkpO1xuICAgIH0pO1xuICB9XG59XG5cbmNvbnN0IGxpc3RJdGVtc1ZpZXcgPSBuZXcgTGlzdEl0ZW1zVmlldygpO1xuZXhwb3J0IGRlZmF1bHQgbGlzdEl0ZW1zVmlldzsiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./list-view.js\n");
-
-/***/ }),
-
-/***/ "./redux.js":
-/*!******************!*\
-  !*** ./redux.js ***!
-  \******************/
-/*! exports provided: getState, dispach, select, subscribe */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getState\", function() { return getState; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"dispach\", function() { return dispach; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"select\", function() { return select; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"subscribe\", function() { return subscribe; });\n/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! events */ \"../../../../../../../usr/local/lib/node_modules/webpack/node_modules/events/events.js\");\n/* harmony import */ var events__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(events__WEBPACK_IMPORTED_MODULE_0__);\n\n\nconst emitter = new events__WEBPACK_IMPORTED_MODULE_0___default.a();\n// 1)\nfunction itemsReducer(state = [], action) {\n    switch (action.type) {\n        case \"CREATE_ITEM\":\n            return [...state, Object.assign(action.payload)];\n        default:\n            return state;\n    }\n}\n\n// 2)\nlet state = {\n    items: []\n};\n\n// 3\nfunction store(state = {\n    items: []\n}, action) {\n    return {\n        items: itemsReducer(state.items, action)\n    };\n}\n\n// 4)\nfunction getState() {\n    return state;\n}\n\n// 5)\nfunction dispach(action) {\n    state = store(state, action);\n    emitter.emit(\"changed\");\n}\n\nfunction select(slice) {\n    return state[slice];\n}\nfunction subscribe(cb) {\n    emitter.on(\"changed\", cb);\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZWR1eC5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3JlZHV4LmpzPzQxOWMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEV2ZW50RW1pdHRlciBmcm9tIFwiZXZlbnRzXCI7XG5cbmNvbnN0IGVtaXR0ZXIgPSBuZXcgRXZlbnRFbWl0dGVyKCk7XG4vLyAxKVxuZnVuY3Rpb24gaXRlbXNSZWR1Y2VyKHN0YXRlID0gW10sIGFjdGlvbikge1xuICAgIHN3aXRjaCAoYWN0aW9uLnR5cGUpIHtcbiAgICAgICAgY2FzZSBcIkNSRUFURV9JVEVNXCI6XG4gICAgICAgICAgICByZXR1cm4gWy4uLnN0YXRlLCBPYmplY3QuYXNzaWduKGFjdGlvbi5wYXlsb2FkKV07XG4gICAgICAgIGRlZmF1bHQ6XG4gICAgICAgICAgICByZXR1cm4gc3RhdGU7XG4gICAgfVxufVxuXG4vLyAyKVxubGV0IHN0YXRlID0ge1xuICAgIGl0ZW1zOiBbXVxufTtcblxuLy8gM1xuZnVuY3Rpb24gc3RvcmUoc3RhdGUgPSB7XG4gICAgaXRlbXM6IFtdXG59LCBhY3Rpb24pIHtcbiAgICByZXR1cm4ge1xuICAgICAgICBpdGVtczogaXRlbXNSZWR1Y2VyKHN0YXRlLml0ZW1zLCBhY3Rpb24pXG4gICAgfTtcbn1cblxuLy8gNClcbmV4cG9ydCBmdW5jdGlvbiBnZXRTdGF0ZSgpIHtcbiAgICByZXR1cm4gc3RhdGU7XG59XG5cbi8vIDUpXG5leHBvcnQgZnVuY3Rpb24gZGlzcGFjaChhY3Rpb24pIHtcbiAgICBzdGF0ZSA9IHN0b3JlKHN0YXRlLCBhY3Rpb24pO1xuICAgIGVtaXR0ZXIuZW1pdChcImNoYW5nZWRcIik7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBzZWxlY3Qoc2xpY2UpIHtcbiAgICByZXR1cm4gc3RhdGVbc2xpY2VdO1xufVxuZXhwb3J0IGZ1bmN0aW9uIHN1YnNjcmliZShjYikge1xuICAgIGVtaXR0ZXIub24oXCJjaGFuZ2VkXCIsIGNiKTtcbn0iXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./redux.js\n");
-
-/***/ }),
-
-/***/ "./todo-app.js":
-/*!*********************!*\
-  !*** ./todo-app.js ***!
-  \*********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _create_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create-view */ \"./create-view.js\");\n/* harmony import */ var _list_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./list-view */ \"./list-view.js\");\n\n// import list view\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi90b2RvLWFwcC5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3RvZG8tYXBwLmpzPzc0YmYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGNyZWF0ZVZpZXcgZnJvbSBcIi4vY3JlYXRlLXZpZXdcIjtcbi8vIGltcG9ydCBsaXN0IHZpZXdcbmltcG9ydCBsaXN0VmlldyBmcm9tIFwiLi9saXN0LXZpZXdcIjsiXSwibWFwcGluZ3MiOiJBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQ0E7Iiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./todo-app.js\n");
+eval("// async/redux.js\n\nconst bookReducer = __webpack_require__(/*! ./book-reducer */ \"./async/book-reducer.js\");\nconst EventEmitter = __webpack_require__(/*! events */ \"../../../../../../../usr/local/lib/node_modules/webpack/node_modules/events/events.js\");\nconst emitter = new EventEmitter();\n\nlet state = {\n  loading: false,\n  data: void 0,\n  error: void 0\n};;\n\nfunction store(state = {}, action) {\n  return bookReducer(state, action);\n}\n\nfunction getState() {\n  return state;\n}\n\nfunction dispatch(action) {\n  const oldState = state;\n  state = store(state, action);\n  emitter.emit('changed');\n}\n\nfunction select(slice) {\n  return state[slice];\n}\n\nfunction subscribe(cb) {\n  emitter.on('changed', cb);\n}\n\nmodule.exports = {\n  getState, dispatch, select, subscribe\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9hc3luYy9yZWR1eC5qcy5qcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL2FzeW5jL3JlZHV4LmpzPzNjYjciXSwic291cmNlc0NvbnRlbnQiOlsiLy8gYXN5bmMvcmVkdXguanNcblxuY29uc3QgYm9va1JlZHVjZXIgPSByZXF1aXJlKCcuL2Jvb2stcmVkdWNlcicpO1xuY29uc3QgRXZlbnRFbWl0dGVyID0gcmVxdWlyZSgnZXZlbnRzJyk7XG5jb25zdCBlbWl0dGVyID0gbmV3IEV2ZW50RW1pdHRlcigpO1xuXG5sZXQgc3RhdGUgPSB7XG4gIGxvYWRpbmc6IGZhbHNlLFxuICBkYXRhOiB2b2lkIDAsXG4gIGVycm9yOiB2b2lkIDBcbn07O1xuXG5mdW5jdGlvbiBzdG9yZShzdGF0ZSA9IHt9LCBhY3Rpb24pIHtcbiAgcmV0dXJuIGJvb2tSZWR1Y2VyKHN0YXRlLCBhY3Rpb24pO1xufVxuXG5mdW5jdGlvbiBnZXRTdGF0ZSgpIHtcbiAgcmV0dXJuIHN0YXRlO1xufVxuXG5mdW5jdGlvbiBkaXNwYXRjaChhY3Rpb24pIHtcbiAgY29uc3Qgb2xkU3RhdGUgPSBzdGF0ZTtcbiAgc3RhdGUgPSBzdG9yZShzdGF0ZSwgYWN0aW9uKTtcbiAgZW1pdHRlci5lbWl0KCdjaGFuZ2VkJyk7XG59XG5cbmZ1bmN0aW9uIHNlbGVjdChzbGljZSkge1xuICByZXR1cm4gc3RhdGVbc2xpY2VdO1xufVxuXG5mdW5jdGlvbiBzdWJzY3JpYmUoY2IpIHtcbiAgZW1pdHRlci5vbignY2hhbmdlZCcsIGNiKTtcbn1cblxubW9kdWxlLmV4cG9ydHMgPSB7XG4gIGdldFN0YXRlLCBkaXNwYXRjaCwgc2VsZWN0LCBzdWJzY3JpYmVcbn0iXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./async/redux.js\n");
 
 /***/ })
 
