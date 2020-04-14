@@ -1,4 +1,4 @@
-import { Jedi } from "./jedi.model";
+import { Jedi } from './jedi/jedi-list/jedi.model';
 
 export interface AppState {
     counter: number;

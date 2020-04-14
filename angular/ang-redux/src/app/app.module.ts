@@ -4,8 +4,11 @@ import { StoreModule } from "@ngrx/store";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { counterReducer } from "./reducer";
-import { jediListReducer } from './jedi-list.reducer';
-import { JediListComponent } from './jedi-list.component';
+
+import { jediListReducer } from './jedi/jedi-list/jedi-list.reducer';
+import { JediListComponent } from './jedi/jedi-list/jedi-list.component';
+import { JediModule } from './jedi/jedi.module';
+
 @NgModule({
   declarations: [
     AppComponent, JediListComponent
@@ -16,6 +19,7 @@ import { JediListComponent } from './jedi-list.component';
     StoreModule.forRoot({ 
       counter: counterReducer,
       jediList: jediListReducer }),
+    JediModule
   ],
   providers: [],
   bootstrap: [AppComponent]
