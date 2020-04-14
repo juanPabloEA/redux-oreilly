@@ -11,12 +11,14 @@ import { Jedi } from './jedi.model';
   styleUrls: ['./jedi-list.component.css']
 })
 export class JediListComponent {
-  list$: Observable<Array<Jedi>>;
+  list$;
   counter = 0;
   newJedi = "";
 
   constructor(private store: Store<AppState>) {
-    this.list$ = store.select("jediList");
+    this.list$ = store.select((state) => {
+      return state.jediList.data;
+    });
   }
 
   add() {
